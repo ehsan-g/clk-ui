@@ -1,0 +1,100 @@
+/* src/index.css */
+
+/* Import playful Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap');
+
+/* Global resets */
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Quicksand", "Fredoka One", Inter, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,110,170,0.06), transparent 6%),
+              radial-gradient(1000px 500px at 90% 90%, rgba(122,247,255,0.04), transparent 6%),
+              linear-gradient(180deg, #071125 0%, #0a0f1a 60%);
+  color: #eaeef2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
+}
+
+/* Cartoonish floating blobs (stronger shadow & glow) */
+.blob {
+  position: fixed;
+  width: 320px;
+  height: 260px;
+  background: linear-gradient(135deg, rgba(255,93,150,0.22), rgba(122,247,255,0.14));
+  filter: blur(46px) saturate(1.15);
+  border-radius: 48% 52% 60% 40% / 40% 60% 40% 60%;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate3d(0,0,0);
+  animation: floaty 9s ease-in-out infinite;
+  opacity: 0.95;
+  /* stronger, colorful glow */
+  box-shadow: 0 40px 120px rgba(2,6,23,0.65), 0 30px 80px rgba(255,93,150,0.14), 0 10px 40px rgba(122,247,255,0.08);
+}
+
+/* position different blobs */
+.blob.b1 { left: -140px; top: -120px; animation-duration: 12s; transform-origin: 50% 50%; }
+.blob.b2 { right: -160px; bottom: -140px; animation-duration: 10s; background: linear-gradient(135deg, rgba(122,247,255,0.18), rgba(255,158,215,0.12)); }
+
+/* floating animation */
+@keyframes floaty {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-28px) rotate(8deg) scale(1.04); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+/* App containers should sit above blobs */
+#root > div { position: relative; z-index: 1; }
+
+/* Funky card border accent (more intense) */
+.funky-accent {
+  position: relative;
+  overflow: visible;
+}
+.funky-accent:before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(90deg,#FF5DA2,#FF9ACD, #7AF7FF);
+  z-index: -1;
+  filter: blur(18px) saturate(1.05);
+  border-radius: 26px;
+  opacity: 0.75;
+  transform: rotate(-0.6deg);
+}
+
+/* Playful headings */
+.h-quirky {
+  font-family: "Fredoka One", "Quicksand", sans-serif;
+  color: #fff;
+  text-shadow: 0 12px 36px rgba(0,0,0,0.6);
+}
+
+/* Stronger glow utility for elements that need pop */
+.glow {
+  box-shadow:
+    0 28px 80px rgba(2,6,23,0.70),
+    0 18px 60px rgba(255,93,150,0.18),
+    0 6px 26px rgba(122,247,255,0.10) inset;
+}
+
+/* Make MUI containers a bit roomier */
+.MuiContainer-root {
+  padding-top: 28px;
+  padding-bottom: 40px;
+}
+
+/* Add hover lift for primary buttons for extra pop */
+.MuiButton-containedPrimary:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 26px 70px rgba(2,6,23,0.72), 0 18px 40px rgba(255,93,150,0.18);
+}
+
+/* Slightly stronger Paper inner blur for depth */
+.MuiPaper-root {
+  backdrop-filter: blur(10px);
+}
