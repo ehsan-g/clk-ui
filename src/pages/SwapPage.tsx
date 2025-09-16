@@ -1,9 +1,8 @@
-// src/pages/SwapPage.tsx
 import React from 'react';
 import { Box, Grid, Paper, TextField, Button, Typography, Divider } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { setSwapAmountA, setSwapAmountB, setTokenA, setTokenB } from '../redux/tokenSlice';
-import TokenSelect from '../components/TokenSelect';
+import { useAppDispatch, useAppSelector } from '../redux/hooks.js';
+import { setSwapAmountA, setSwapAmountB, setTokenA, setTokenB } from '../redux/tokenSlice.js';
+import TokenSelect from '../components/TokenSelect.js';
 
 const mockPrice = (from?: string, to?: string, amount = 0) => {
     if (!from || !to || amount === 0) return 0;
@@ -17,6 +16,7 @@ const SwapPage: React.FC = () => {
     // avoid TS '{}' inference by selecting tokens as `any`
     const tokens = useAppSelector((s: any) => s.tokens || {});
     const { tokenA, tokenB, swapAmountA, swapAmountB } = tokens;
+
 
     const handleAmountAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const v = e.target.value;
@@ -38,7 +38,7 @@ const SwapPage: React.FC = () => {
                 </Typography>
                 <Divider sx={{ mb: 2 }} />
                 <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12, md: 12 }}>
                         <Typography variant="caption">From</Typography>
                         <Box display="flex" gap={2} alignItems="center" mt={1}>
                             <TextField
@@ -50,12 +50,12 @@ const SwapPage: React.FC = () => {
                             />
                             <TokenSelect
                                 value={tokenA?.symbol ?? null}
-                                onChange={(s) => dispatch(setTokenA({ symbol: s }))}
+                                onChange={(s: any) => dispatch(setTokenA({ symbol: s }))}
                             />
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12, md: 12 }}>
                         <Typography variant="caption">To</Typography>
                         <Box display="flex" gap={2} alignItems="center" mt={1}>
                             <TextField
@@ -67,12 +67,12 @@ const SwapPage: React.FC = () => {
                             />
                             <TokenSelect
                                 value={tokenB?.symbol ?? null}
-                                onChange={(s) => dispatch(setTokenB({ symbol: s }))}
+                                onChange={(s: any) => dispatch(setTokenB({ symbol: s }))}
                             />
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12, md: 12 }}>
                         <Button variant="contained" color="primary" fullWidth onClick={doSwap}>
                             Swap
                         </Button>

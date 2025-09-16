@@ -1,9 +1,8 @@
-// src/pages/AddLiquidityPage.tsx
 import React, { useState } from 'react';
 import { Box, Paper, Typography, Grid, TextField, Button, Divider } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { setLiquidity, setTokenA, setTokenB } from '../redux/tokenSlice';
-import TokenSelect from '../components/TokenSelect';
+import { useAppDispatch, useAppSelector } from '../redux/hooks.js';
+import { setLiquidity, setTokenA, setTokenB } from '../redux/tokenSlice.js';
+import TokenSelect from '../components/TokenSelect.js';
 
 const AddLiquidityPage: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -20,23 +19,23 @@ const AddLiquidityPage: React.FC = () => {
     };
 
     return (
-        <Box mt={4} display="flex" justifyContent="center">
+        <Box >
             <Paper sx={{ width: 680, p: 3 }} elevation={6}>
                 <Typography variant="h5">Add Liquidity</Typography>
                 <Divider sx={{ my: 2 }} />
                 <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
+                    <Grid size={{ xs: 12, md: 12 }} >
                         <Typography variant="caption">Token A</Typography>
-                        <Box display="flex" gap={2} alignItems="center" mt={1}>
+                        <Box >
                             <TextField
                                 label={`Amount ${tokenA?.symbol ?? ''}`}
                                 value={a}
-                                onChange={(e) => setA(e.target.value)}
+                                onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setA(e.target.value)}
                                 fullWidth
                                 type="number"
                             />
                         </Box>
-                        <Box mt={1}>
+                        <Box>
                             <TokenSelect
                                 value={tokenA?.symbol ?? null}
                                 onChange={(s) => dispatch(setTokenA({ symbol: s }))}
@@ -44,18 +43,18 @@ const AddLiquidityPage: React.FC = () => {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid size={{ xs: 12, md: 12 }} >
                         <Typography variant="caption">Token B</Typography>
-                        <Box display="flex" gap={2} alignItems="center" mt={1}>
+                        <Box>
                             <TextField
                                 label={`Amount ${tokenB?.symbol ?? ''}`}
                                 value={b}
-                                onChange={(e) => setB(e.target.value)}
+                                onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setB(e.target.value)}
                                 fullWidth
                                 type="number"
                             />
                         </Box>
-                        <Box mt={1}>
+                        <Box >
                             <TokenSelect
                                 value={tokenB?.symbol ?? null}
                                 onChange={(s) => dispatch(setTokenB({ symbol: s }))}
@@ -63,7 +62,7 @@ const AddLiquidityPage: React.FC = () => {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12, md: 12 }}>
                         <Button variant="contained" fullWidth onClick={handleAdd}>
                             Add Liquidity
                         </Button>
